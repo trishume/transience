@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui dbus
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,9 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         debugwindow.cpp \
-    dothint.cpp
+    dothint.cpp \
+    hintmanager.cpp \
+    hintmanageradapter.cpp
 
 HEADERS  += debugwindow.h \
-    dothint.h
+    dothint.h \
+    hintmanager.h \
+    hintmanageradapter.h
 
 FORMS    += debugwindow.ui
+
+OTHER_FILES +=

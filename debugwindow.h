@@ -6,6 +6,7 @@
 namespace Ui {
 class DebugWindow;
 }
+class HintManager;
 
 class DebugWindow : public QMainWindow
 {
@@ -15,12 +16,13 @@ public:
     explicit DebugWindow(QWidget *parent = 0);
     ~DebugWindow();
 
-public slots:
-    void testDot();
-    void createDot(const QPoint &pos, const QColor &color);
+    virtual void closeEvent (QCloseEvent *);
+
+    void setHintMan(HintManager *man);
 
 private:
     Ui::DebugWindow *ui;
+    HintManager *hintMan;
 };
 
 #endif // DEBUGWINDOW_H

@@ -9,7 +9,7 @@ class DotHint : public QWidget
 {
     Q_OBJECT
 public:
-    explicit DotHint(QColor col);
+    explicit DotHint(const QColor &col);
     ~DotHint();
     virtual QSize sizeHint() const;
     virtual void paintEvent(QPaintEvent *ev);
@@ -17,6 +17,7 @@ public:
 signals:
 
 public slots:
+    void setColor(QColor col);
 
 protected:
     QRadialGradient *grad;
