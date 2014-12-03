@@ -15,8 +15,9 @@ signals:
 
 public slots:
     void createDot(int x, int y, int r, int g, int b);
-    void testDot();
+    Q_NOREPLY void testDot();
     void closeAllDots();
+    void testPing();
 private:
     HintManager *hintMan;
 

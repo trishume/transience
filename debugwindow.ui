@@ -40,6 +40,32 @@
      <string>Close Dots</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="manyDots">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>10</y>
+      <width>115</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Many Dots</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearCache">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>50</y>
+      <width>115</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clear Cache</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

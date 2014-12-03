@@ -20,6 +20,9 @@ public:
 
     void setHintMan(HintManager *man);
 
+public slots:
+    void manyDots();
+
 private:
     Ui::DebugWindow *ui;
     HintManager *hintMan;

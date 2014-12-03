@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
     HintManager hintMan;
     new HintManagerAdapter(&hintMan);
-    QDBusConnection::sessionBus().registerObject("/ca/thume/transience/hintmanager", &a);
+    QDBusConnection::sessionBus().registerObject("/ca/thume/transience/hintmanager", &hintMan);
 
     if(!QDBusConnection::sessionBus().registerService("ca.thume.transience")) {
         qDebug() << "Couldn't grab DBus service.";

@@ -3,6 +3,7 @@
 
 #include <QPoint>
 #include <QColor>
+#include <QDebug>
 
 HintManagerAdapter::HintManagerAdapter(HintManager *parent) :
     QDBusAbstractAdaptor(parent), hintMan(parent)
@@ -19,4 +20,8 @@ void HintManagerAdapter::closeAllDots() {
 
 void HintManagerAdapter::testDot() {
     hintMan->testDot();
+}
+
+void HintManagerAdapter::testPing() {
+    qDebug() << "ping";
 }

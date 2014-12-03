@@ -3,6 +3,7 @@
 
 #include <QApplication>
 #include <QDesktopWidget>
+#include <QDebug>
 
 QPoint randomPoint() {
     QDesktopWidget widget;
@@ -17,7 +18,7 @@ QColor randomColor() {
 }
 
 HintManager::HintManager(QObject *parent) :
-    QObject(parent), widgetList()
+    QObject(parent), widgetList(), cache()
 {
 }
 
@@ -30,7 +31,14 @@ void HintManager::testDot() {
 }
 
 void HintManager::createDot(const QPoint &pos, const QColor &color) {
-    DotHint *hint = new DotHint(color);
+    DotHint *hint;
+    if(cache.isEmpty()) {
+        hint = new DotHint(color);
+    } else {
+        hint = cache.takeFirst();
+        hint->setColor(color);
+        //qDebug() << "hit cache";
+    }
     hint->show();
     hint->move(pos);
     widgetList << hint;
@@ -38,7 +46,15 @@ void HintManager::createDot(const QPoint &pos, const QColor &color) {
 
 void HintManager::closeAll() {
     while (!widgetList.isEmpty()) {
-        QWidget *win = widgetList.takeFirst();
+        DotHint *win = widgetList.takeFirst();
+        win->hide();
+        cache << win;
+    }
+}
+
+void HintManager::clearCache() {
+    while (!cache.isEmpty()) {
+        QWidget *win = cache.takeFirst();
         win->close();
         delete win;
     }

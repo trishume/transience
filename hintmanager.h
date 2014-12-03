@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QList>
 
+class DotHint;
 class HintManager : public QObject
 {
     Q_OBJECT
@@ -17,9 +18,11 @@ public slots:
     void testDot();
     void createDot(const QPoint &pos, const QColor &color);
     void closeAll();
+    void clearCache();
 
 protected:
-    QList<QWidget*> widgetList;
+    QList<DotHint*> widgetList;
+    QList<DotHint*> cache;
 };
 
 #endif // HINTMANAGER_H
