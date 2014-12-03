@@ -20,8 +20,9 @@ DebugWindow::~DebugWindow()
 void DebugWindow::setHintMan(HintManager *man) {
     hintMan = man;
     QObject::connect(ui->pushButton, SIGNAL(clicked()),hintMan,SLOT(testDot()));
+    QObject::connect(ui->testFrame, SIGNAL(clicked()),hintMan,SLOT(testFrame()));
     QObject::connect(ui->closeDotsButton, SIGNAL(clicked()),hintMan,SLOT(closeAll()));
-    QObject::connect(ui->clearCache, SIGNAL(clicked()),hintMan,SLOT(clearCache()));
+    //QObject::connect(ui->clearCache, SIGNAL(clicked()),hintMan,SLOT(clearCache()));
     QObject::connect(ui->manyDots, SIGNAL(clicked()),this,SLOT(manyDots()));
 }
 

@@ -1,9 +1,15 @@
 #ifndef HINTMANAGERADAPTER_H
 #define HINTMANAGERADAPTER_H
 
-#include <QDBusAbstractAdaptor>
+#include "hintmanager.h"
 
-class HintManager;
+#include <QDBusAbstractAdaptor>
+#include <QDBusArgument>
+#include <QList>
+
+QDBusArgument &operator<<(QDBusArgument &argument, const DotSpec &mystruct);
+const QDBusArgument &operator>>(const QDBusArgument &argument, DotSpec &mystruct);
+
 class HintManagerAdapter : public QDBusAbstractAdaptor
 {
     Q_OBJECT
@@ -18,6 +24,8 @@ public slots:
     Q_NOREPLY void testDot();
     void closeAllDots();
     void testPing();
+
+    void doFrame(const QList<DotSpec> &specList);
 private:
     HintManager *hintMan;
 
