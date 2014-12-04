@@ -1,7 +1,7 @@
 #ifndef HINTMANAGER_H
 #define HINTMANAGER_H
 
-#include <QObject>
+#include <QWidget>
 #include <QList>
 #include <QPoint>
 #include <QColor>
@@ -15,12 +15,11 @@ struct DotSpec {
 };
 Q_DECLARE_METATYPE(DotSpec)
 
-class DotHint;
-class ScreenSurface : public QObject
+class ScreenSurface : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ScreenSurface(QObject *parent = 0);
+    explicit ScreenSurface(QWidget *parent = 0);
     ~ScreenSurface();
 
 signals:
@@ -33,7 +32,12 @@ public slots:
     void doFrame(const QList<DotSpec> &specList);
 
 protected:
-    QList<DotHint*> widgetList;
+    QList<DotSpec> specs;
+    QRect screenRect;
+
+    QPoint randomPoint();
+    QColor randomColor();
+    QRect screenSize();
 };
 
 #endif // HINTMANAGER_H
