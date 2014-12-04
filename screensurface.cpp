@@ -1,4 +1,4 @@
-#include "hintmanager.h"
+#include "screensurface.h"
 #include "dothint.h"
 
 #include <QApplication>
@@ -18,20 +18,20 @@ QColor randomColor() {
     return QColor::fromHsv(qrand() % 255, 255,255);
 }
 
-HintManager::HintManager(QObject *parent) :
+ScreenSurface::ScreenSurface(QObject *parent) :
     QObject(parent), widgetList()
 {
 }
 
-HintManager::~HintManager() {
+ScreenSurface::~ScreenSurface() {
     closeAll();
 }
 
-void HintManager::testDot() {
+void ScreenSurface::testDot() {
     createDot(randomPoint(), randomColor());
 }
 
-void HintManager::testFrame() {
+void ScreenSurface::testFrame() {
     QTime myTimer;
     myTimer.start();
     QList<DotSpec> list;
@@ -46,14 +46,14 @@ void HintManager::testFrame() {
     qDebug() << "Did frame in ms: " << nMilliseconds;
 }
 
-void HintManager::createDot(const QPoint &pos, const QColor &color) {
+void ScreenSurface::createDot(const QPoint &pos, const QColor &color) {
     DotHint *hint = new DotHint(color);
     hint->show();
     hint->move(pos);
     widgetList << hint;
 }
 
-void HintManager::closeAll() {
+void ScreenSurface::closeAll() {
     while (!widgetList.isEmpty()) {
         DotHint *win = widgetList.takeFirst();
         win->close();
@@ -61,7 +61,7 @@ void HintManager::closeAll() {
     }
 }
 
-void HintManager::doFrame(const QList<DotSpec> &specList) {
+void ScreenSurface::doFrame(const QList<DotSpec> &specList) {
     int common = std::min(specList.length(), widgetList.length());
     qDebug() << "moving common widgets: " << common;
     // reuse widgets on the screen

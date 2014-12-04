@@ -1,7 +1,7 @@
 #ifndef HINTMANAGERADAPTER_H
 #define HINTMANAGERADAPTER_H
 
-#include "hintmanager.h"
+#include "screensurface.h"
 
 #include <QDBusAbstractAdaptor>
 #include <QDBusArgument>
@@ -10,12 +10,12 @@
 QDBusArgument &operator<<(QDBusArgument &argument, const DotSpec &mystruct);
 const QDBusArgument &operator>>(const QDBusArgument &argument, DotSpec &mystruct);
 
-class HintManagerAdapter : public QDBusAbstractAdaptor
+class ScreenSurfaceAdapter : public QDBusAbstractAdaptor
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "ca.thume.transience.hintmanager")
 public:
-    explicit HintManagerAdapter(HintManager *man);
+    explicit ScreenSurfaceAdapter(ScreenSurface *surf);
 
 signals:
 
@@ -27,7 +27,7 @@ public slots:
 
     void doFrame(const QList<DotSpec> &specList);
 private:
-    HintManager *hintMan;
+    ScreenSurface *surf;
 
 };
 

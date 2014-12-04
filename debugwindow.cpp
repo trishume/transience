@@ -1,6 +1,6 @@
 #include "debugwindow.h"
 #include "ui_debugwindow.h"
-#include "hintmanager.h"
+#include "screensurface.h"
 
 #include <QDebug>
 #include <QTime>
@@ -17,7 +17,7 @@ DebugWindow::~DebugWindow()
     delete ui;
 }
 
-void DebugWindow::setHintMan(HintManager *man) {
+void DebugWindow::setHintMan(ScreenSurface *man) {
     hintMan = man;
     QObject::connect(ui->pushButton, SIGNAL(clicked()),hintMan,SLOT(testDot()));
     QObject::connect(ui->testFrame, SIGNAL(clicked()),hintMan,SLOT(testFrame()));

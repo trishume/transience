@@ -15,13 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         debugwindow.cpp \
     dothint.cpp \
-    hintmanager.cpp \
-    hintmanageradapter.cpp
+    screensurface.cpp \
+    screensurfaceadapter.cpp
 
 HEADERS  += debugwindow.h \
     dothint.h \
-    hintmanager.h \
-    hintmanageradapter.h
+    screensurface.h \
+    screensurfaceadapter.h
 
 FORMS    += debugwindow.ui
 

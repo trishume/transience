@@ -6,7 +6,7 @@
 namespace Ui {
 class DebugWindow;
 }
-class HintManager;
+class ScreenSurface;
 
 class DebugWindow : public QMainWindow
 {
@@ -18,14 +18,14 @@ public:
 
     virtual void closeEvent (QCloseEvent *);
 
-    void setHintMan(HintManager *man);
+    void setHintMan(ScreenSurface *man);
 
 public slots:
     void manyDots();
 
 private:
     Ui::DebugWindow *ui;
-    HintManager *hintMan;
+    ScreenSurface *hintMan;
 };
 
 #endif // DEBUGWINDOW_H

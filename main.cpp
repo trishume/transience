@@ -5,8 +5,8 @@
 #include <QDebug>
 #include <QDBusMetaType>
 
-#include "hintmanager.h"
-#include "hintmanageradapter.h"
+#include "screensurface.h"
+#include "screensurfaceadapter.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    HintManager hintMan;
+    ScreenSurface hintMan;
     qDBusRegisterMetaType<DotSpec>();
     qDBusRegisterMetaType<QList<DotSpec> >();
-    new HintManagerAdapter(&hintMan);
+    new ScreenSurfaceAdapter(&hintMan);
     QDBusConnection::sessionBus().registerObject("/ca/thume/transience/hintmanager", &hintMan);
 
     if(!QDBusConnection::sessionBus().registerService("ca.thume.transience")) {

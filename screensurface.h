@@ -17,12 +17,12 @@ struct DotSpec {
 Q_DECLARE_METATYPE(DotSpec)
 
 class DotHint;
-class HintManager : public QObject
+class ScreenSurface : public QObject
 {
     Q_OBJECT
 public:
-    explicit HintManager(QObject *parent = 0);
-    ~HintManager();
+    explicit ScreenSurface(QObject *parent = 0);
+    ~ScreenSurface();
 
 signals:
 
