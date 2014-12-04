@@ -7,12 +7,11 @@
 #include <QColor>
 
 struct DotSpec {
-    int x,y,r,g,b;
+    QPoint point;
+    QColor color;
 
     DotSpec() {}
-    DotSpec(int x, int y, int r, int g, int b) : x(x), y(y), r(r), g(g), b(b) {}
-    QPoint getPoint() const {return QPoint(this->x,this->y);}
-    QColor getColor() const {return QColor(this->r,this->g,this->b);}
+    DotSpec(const QPoint &pt, const QColor &col) : point(pt), color(col) {}
 };
 Q_DECLARE_METATYPE(DotSpec)
 

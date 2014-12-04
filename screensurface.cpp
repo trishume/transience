@@ -38,7 +38,7 @@ void ScreenSurface::testFrame() {
     for(int i = 0; i < 10; ++i) {
         QColor col = randomColor();
         QPoint pt = randomPoint();
-        DotSpec spec(pt.x(),pt.y(),col.red(),col.green(),col.blue());
+        DotSpec spec(pt,col);
         list << spec;
     }
     doFrame(list);
@@ -68,15 +68,15 @@ void ScreenSurface::doFrame(const QList<DotSpec> &specList) {
     for(int i = 0; i < common; ++i) {
         DotHint *hint = widgetList[i];
         DotSpec spec = specList[i];
-        hint->setColor(spec.getColor());
-        hint->move(spec.getPoint());
+        hint->setColor(spec.color);
+        hint->move(spec.point);
     }
     // deal with the difference
     int diff = specList.length() - widgetList.length();
     if(diff > 0) { // more specs than widgets, create new widgets
         for(int i = widgetList.length(); i < specList.length(); ++i) {
             DotSpec spec = specList[i];
-            createDot(spec.getPoint(),spec.getColor());
+            createDot(spec.point,spec.color);
         }
     } else if(diff < 0) { // more widgets than specs, close widgets
         for(int i = 0; i < -diff; ++i) {

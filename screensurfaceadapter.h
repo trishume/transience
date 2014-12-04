@@ -13,7 +13,7 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, DotSpec &mystruct
 class ScreenSurfaceAdapter : public QDBusAbstractAdaptor
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "ca.thume.transience.hintmanager")
+    Q_CLASSINFO("D-Bus Interface", "ca.thume.transience.screensurface")
 public:
     explicit ScreenSurfaceAdapter(ScreenSurface *surf);
 
