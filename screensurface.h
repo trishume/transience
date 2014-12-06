@@ -40,9 +40,9 @@ protected:
 
     QPoint randomPoint();
     QColor randomColor();
-    QRect screenSize();
 
     void platformSpecificSetup();
+    void drawDot(QPainter &painter, const DotSpec &dot);
     virtual void paintEvent(QPaintEvent *ev);
 };
 

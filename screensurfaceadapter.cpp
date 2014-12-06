@@ -52,8 +52,5 @@ void ScreenSurfaceAdapter::testPing() {
 }
 
 void ScreenSurfaceAdapter::doFrame(const QList<DotSpec> &specList) {
-    for(int i = 0; i < specList.length(); ++i) {
-        DotSpec spec = specList[i];
-        qDebug() << "got spec: " << spec.point << spec.color;
-    }
+    surf->doFrame(specList);
 }
