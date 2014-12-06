@@ -15,11 +15,12 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    ScreenSurface hintMan;
+    ScreenSurface surf(0); // 0 = Appear on main monitor
     qDBusRegisterMetaType<DotSpec>();
     qDBusRegisterMetaType<QList<DotSpec> >();
-    new ScreenSurfaceAdapter(&hintMan);
-    QDBusConnection::sessionBus().registerObject("/ca/thume/transience/hintmanager", &hintMan);
+    new ScreenSurfaceAdapter(&surf);
+    QDBusConnection::sessionBus().registerObject("/ca/thume/transience/screensurface", &surf);
+    surf.show();
 
     if(!QDBusConnection::sessionBus().registerService("ca.thume.transience")) {
         qDebug() << "Couldn't grab DBus service.";
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
     }
 
     DebugWindow w;
-    w.setHintMan(&hintMan);
+    w.setHintMan(&surf);
     w.show();
 
     return a.exec();

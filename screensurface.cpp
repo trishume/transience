@@ -5,15 +5,29 @@
 #include <QDesktopWidget>
 #include <QDebug>
 #include <QTime>
+#include <QPainter>
+#include <QPaintEvent>
+#include <QScreen>
 
-ScreenSurface::ScreenSurface(QWidget *parent) :
-    QWidget(parent), specs()
+//#define DEBUG_FILL
+
+ScreenSurface::ScreenSurface(int screen) :
+    QWidget(0, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint), specs(), screen(screen)
 {
-
+    setStyleSheet("background:transparent;");
+    setAttribute(Qt::WA_TranslucentBackground);
+    platformSpecificSetup();
+    fillScreen();
 }
 
 ScreenSurface::~ScreenSurface() {
     closeAll();
+}
+
+void ScreenSurface::fillScreen() {
+    QRect screen = screenSize();
+    move(screen.x(),screen.y());
+    resize(screen.width(),screen.height());
 }
 
 void ScreenSurface::testDot() {
@@ -62,8 +76,18 @@ QColor ScreenSurface::randomColor() {
 
 QRect ScreenSurface::screenSize() {
     if(screenRect.width() == 0) {
-        QDesktopWidget widget;
-        screenRect = widget.availableGeometry(widget.primaryScreen());
+        QScreen *srn = QApplication::screens().at(screen);
+        screenRect = srn->geometry();
     }
     return screenRect;
+}
+
+void ScreenSurface::paintEvent(QPaintEvent *ev) {
+    QPainter painter(this);
+    painter.setCompositionMode (QPainter::CompositionMode_Source);
+    painter.fillRect(ev->rect(), Qt::transparent);
+    painter.setCompositionMode (QPainter::CompositionMode_SourceOver);
+#ifdef DEBUG_FILL
+    painter.fillRect(ev->rect(), QColor(0,255,0,50));
+#endif
 }

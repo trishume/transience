@@ -22,12 +22,13 @@ void DebugWindow::setHintMan(ScreenSurface *man) {
     QObject::connect(ui->pushButton, SIGNAL(clicked()),hintMan,SLOT(testDot()));
     QObject::connect(ui->testFrame, SIGNAL(clicked()),hintMan,SLOT(testFrame()));
     QObject::connect(ui->closeDotsButton, SIGNAL(clicked()),hintMan,SLOT(closeAll()));
+    QObject::connect(ui->fillScreen, SIGNAL(clicked()),hintMan,SLOT(fillScreen()));
     //QObject::connect(ui->clearCache, SIGNAL(clicked()),hintMan,SLOT(clearCache()));
     QObject::connect(ui->manyDots, SIGNAL(clicked()),this,SLOT(manyDots()));
 }
 
 void DebugWindow::closeEvent (QCloseEvent *) {
-    hintMan->closeAll();
+    hintMan->close();
 }
 
 void DebugWindow::manyDots() {

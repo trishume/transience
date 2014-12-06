@@ -19,7 +19,7 @@ class ScreenSurface : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ScreenSurface(QWidget *parent = 0);
+    explicit ScreenSurface(int screen);
     ~ScreenSurface();
 
 signals:
@@ -31,13 +31,19 @@ public slots:
     void closeAll();
     void doFrame(const QList<DotSpec> &specList);
 
+    void fillScreen();
+
 protected:
     QList<DotSpec> specs;
     QRect screenRect;
+    int screen;
 
     QPoint randomPoint();
     QColor randomColor();
     QRect screenSize();
+
+    void platformSpecificSetup();
+    virtual void paintEvent(QPaintEvent *ev);
 };
 
 #endif // HINTMANAGER_H

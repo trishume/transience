@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = transience
 TEMPLATE = app
 
+LIBS += -framework Cocoa
 
 SOURCES += main.cpp\
         debugwindow.cpp \
@@ -26,3 +27,6 @@ HEADERS  += debugwindow.h \
 FORMS    += debugwindow.ui
 
 OTHER_FILES +=
+
+OBJECTIVE_SOURCES += \
+    osxhacks.mm
