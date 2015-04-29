@@ -67,10 +67,6 @@ void ScreenSurface::closeAll() {
 
 void ScreenSurface::doFrame(const QList<DotSpec> &specList) {
     specs = specList;
-    for(int i = 0; i < specs.length(); ++i) {
-        DotSpec spec = specs[i];
-        qDebug() << "got spec: " << spec.point << spec.color;
-    }
     repaint();
 }
 

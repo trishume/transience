@@ -23,7 +23,7 @@ public slots:
     void createDot(int x, int y, int r, int g, int b);
     Q_NOREPLY void testDot();
     void closeAllDots();
-    void testPing();
+    int testPing();
 
     void doFrame(const QList<DotSpec> &specList);
 private:

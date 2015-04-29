@@ -47,8 +47,9 @@ void ScreenSurfaceAdapter::testDot() {
     surf->testDot();
 }
 
-void ScreenSurfaceAdapter::testPing() {
+int ScreenSurfaceAdapter::testPing() {
     qDebug() << "ping";
+    return 42;
 }
 
 void ScreenSurfaceAdapter::doFrame(const QList<DotSpec> &specList) {
